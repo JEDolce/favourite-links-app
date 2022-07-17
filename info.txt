@@ -1,0 +1,68 @@
+1° Parte => Configuracion Basica Servidor con Node
+- Instalacion de paquetes (ver en package.json)
+- Creacion de carpetas y archivos (lib - public - routes - views)
+- Configuracion inicial de index.js 
+    => Importo paquetes, configuro middlewares y rutas
+- Configuracion de handlebars (dentro de index.js)
+- Creacion de los archivos de las rutas auth, links y routes.
+
+Algunos conceptos: 
+=> __dirname es una constante de node que me da el nombre de la carpeta en la cual esta el archivo donde estoy trabajando
+=> path.join(__dirname, 'public') me da la direccion qeu surje de la union entre __dirname y public ('src/public')
+=> app.use(express.static(path.join(__dirname, 'public'))) trae archivos estaticos desde la direccion 'src/public'
+=> app.use(express.urlencoded({ extended: false })) acepto los datos de formulario del usuario (extended: false) por ser datos sencillos
+
+2° Integracion de MySQL
+- Creamos la base de datos db.sql (Lo puedo ir editando directamente desde workbench)
+- Configuramos la conexion a la db en keys.js y luego conectamos database.js
+- Utilizo promosify del modulo utils para poder utilizar promesas o async/await
+
+3° Diseñar el Frontend usando handlebars y bootstrap
+
+4° Post a link (guardar links en la db)
+
+5° Ver los links listados en la db
+- Creamos la ruta get que lista los links
+- Creamos la vista list.hbs
+- Utilizamos timeago para que aparezca la fecha de creacion en la vista
+- Redireccionamos luego a la pantalla principal luego de agregar un link
+
+6° Borrar un link de la db
+- Creamos la ruta para eliminar
+- Editamos la vista para que aparezca un cartel si no tenemos links
+
+7° Editamos links
+- Creamos la ruta para editar
+- Creamos la vista edit.hbs
+
+8° Agregamos mensajes y editamos el navegador
+- Utilizamos connect-flash, express-session y express-mysql-session
+- Creamos la variable global locals.success
+- En main.hbs agregamos el js de bootstrap
+- Editamos navbar
+- Creamos el partial message.hbs para guardar los mensajes ahi
+
+9° Registro de usuarios en la db local
+- Creamos la vista signup y las rutas en auth
+- Configuramos passport
+- Creamos helpers (en pricipio para bcrypt)
+
+10° Generacion del Login
+- Creamos la vista signin
+- Configuramos el login en passport
+- Creamos message en message.hbs y configuramos la variable global
+
+11° Proteger rutas para usuarios autenticados
+- Creamos la vista profile
+- Creamos la variable global users
+- Editamos el navegador para que este la opcion de logout
+- Creamos la ruta logout en auth.js
+- Creamos el proceso para que si no estoy logeado no pueda ir a profile
+- Creamos authenticate.js en lib y los metodos isLoggedIn y isNotLoggedIn
+- Colocamos los metodos correspondientes en las rutas
+
+12° Que cada usuaraio vea solo sus links
+- Creamos ventana de bienvenida index.hbs
+- Editamos el navegador para que muestre signin y signup en home
+- Editar la ruta post de add link para enlazar el link al id del usuario
+  y el get links para que me traiga todos los links del usuario
